@@ -10,7 +10,9 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 const app = express();
 
-const allowedOrigin = process.env.FRONTEND_URL || "https://team-task-manager-f4ar.onrender.com";
+// const allowedOrigin = process.env.FRONTEND_URL || "https://team-task-manager-f4ar.onrender.com";
+
+const allowedOrigin = "https://team-task-manager-f4ar.onrender.com";
 
 app.use(
   cors({
