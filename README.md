@@ -3,169 +3,204 @@
 A production-ready full-stack **Team Task Management Web Application** built using the MERN stack.  
 This project was developed as part of a **placement drive assessment for Ethara.AI**.
 
-🔗 **Live Demo:** https://team-task-manager-f4ar.onrender.com/
+🌐 **Live Frontend:** https://team-task-manager-f4ar.onrender.com  
+⚙️ **Backend API:** https://team-task-manager-8wdc.onrender.com  
 
 ---
 
 ## 📌 Overview
 
-This application allows teams to collaborate efficiently by managing projects and tasks with **role-based access control**.
+This application enables teams to collaborate efficiently by managing projects and tasks with **role-based access control (RBAC)**.
 
-It is inspired by tools like **Trello** and **Asana**, focusing on real-world workflow and usability.
+It is inspired by tools like **Trello** and **Asana**, focusing on real-world workflows, scalability, and usability.
 
 ---
 
+## 🏗️ Project Structure
 
-
-## Folder Structure
-
-```text
-frontend/
+```
 backend/
+├── config/
+├── controllers/
+├── middleware/
+├── models/
+├── routes/
+├── server.js
+├── srcApp.js
+├── package.json
+
+frontend/
+├── src/
+│ ├── api/
+│ ├── components/
+│ ├── context/
+│ ├── pages/
+│ ├── utils/
+│ ├── App.jsx
+│ ├── main.jsx
+│ └── styles.css
+├── index.html
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+
 ```
 
-## Features
+---
 
-- Signup and login with email/password
-- Password hashing with bcrypt
-- JWT authentication stored in localStorage
-- Admin and Member roles
-- Admins can create projects, manage project members, create tasks, assign tasks, and delete tasks
-- Members can view their assigned projects/tasks and update task status only
-- Dashboard with total tasks, tasks by status, tasks per user, and overdue tasks
-- Axios API integration with `Authorization: Bearer <token>`
-- Railway-compatible backend configuration through environment variables
+## ✨ Features
 
-## Backend Setup
+### 🔐 Authentication & Security
+- Signup & login with email/password  
+- Password hashing using bcrypt  
+- JWT-based authentication  
+- Secure API access using `Authorization: Bearer <token>`  
+
+### 👥 Role-Based Access Control
+- **Admin**
+  - Create projects  
+  - Add/remove members  
+  - Create, assign, and delete tasks  
+- **Member**
+  - View assigned projects and tasks  
+  - Update task status only  
+
+### 📁 Project & Task Management
+- Create and manage projects  
+- Assign tasks to team members  
+- Track task progress:
+  - To Do  
+  - In Progress  
+  - Done  
+
+### 📊 Dashboard
+- Total tasks  
+- Tasks grouped by status  
+- Tasks per user  
+- Overdue tasks detection  
+
+---
+
+## ⚙️ Tech Stack
+
+- **Frontend:** React (Vite), Tailwind CSS  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB (Mongoose)  
+- **Authentication:** JWT, bcrypt  
+- **Deployment:** Render  
+
+---
+
+## 🧪 Local Setup
+
+### 🔹 Backend Setup
 
 ```bash
 cd backend
 npm install
 cp .env.example .env
 npm run dev
-```
-
-Set these variables in `backend/.env`:
-
-```env
+Environment Variables (backend/.env)
 PORT=5000
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/team-task-manager
-JWT_SECRET=replace_with_a_long_random_secret
+MONGO_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_secret_key
 FRONTEND_URL=http://localhost:5173
+
+Backend runs at: https://team-task-manager-8wdc.onrender.com
+
 ```
 
-Backend API runs at:
+---
 
-```text
-http://localhost:5000
+
+🔹 Frontend Setup
+
 ```
-
-## Frontend Setup
-
-```bash
 cd frontend
 npm install
 cp .env.example .env
 npm run dev
-```
-
-Set this variable in `frontend/.env`:
-
-```env
+Environment Variables (frontend/.env)
 VITE_API_URL=http://localhost:5000/api
+
+Frontend runs at: https://team-task-manager-f4ar.onrender.com
+
 ```
 
-Frontend runs at:
+---
 
-```text
-http://localhost:5173
-```
+## 🔗 API Endpoints
 
-## API Routes
+# 🔐 Auth
+* POST /api/auth/register
+* POST /api/auth/login
+* GET /api/auth/me
 
-Auth:
+# 📁 Projects
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `GET /api/auth/me`
+* POST /api/projects (Admin)
+* GET /api/projects
+* PUT /api/projects/:id/add-member (Admin)
+* DELETE /api/projects/:id/remove-member (Admin)
 
-Projects:
+# 📝 Tasks
 
-- `POST /api/projects` Admin only
-- `GET /api/projects`
-- `PUT /api/projects/:id/add-member` Admin only
-- `DELETE /api/projects/:id/remove-member` Admin only
+* POST /api/tasks (Admin)
+* GET /api/tasks
+* PUT /api/tasks/:id
+* DELETE /api/tasks/:id (Admin)
 
-Tasks:
+# 📊 Dashboard
 
-- `POST /api/tasks` Admin only
-- `GET /api/tasks`
-- `PUT /api/tasks/:id`
-- `DELETE /api/tasks/:id` Admin only
+* GET /api/dashboard
 
-Dashboard:
+# 👤 Users
 
-- `GET /api/dashboard`
+* GET /api/users
 
-Users:
+---
 
-- `GET /api/users`
+## 🔄 Application Flow
 
-## Deployment
+# 🔐 Authentication
 
-### Backend on Railway
-1. Go to Render and create a new **Web Service**
-2. Connect your GitHub repository
-3. Set the following configuration:
-   - **Root Directory:** `backend`
-   - **Environment:** Node
-   - **Build Command:** `npm install`
-   - **Start Command:** `node server.js`
+* User registers with role (Admin/Member)
+* Password is hashed using bcrypt
+* Login returns JWT token
+* Token is used in protected API requests
 
-4. Add environment variables:
-   - `MONGO_URI`
-   - `JWT_SECRET`
-   - `FRONTEND_URL`
+# 🧠 Role-Based Access
 
-5. Click **Create Web Service** and deploy
+* Middleware verifies JWT
+* Role-based authorization restricts access
+* UI adapts based on user role
 
-### Frontend on Vercel, Netlify, or Railway
+# 📁 Task Workflow
 
-1. Select the `frontend` folder as the app root.
-2. Add `VITE_API_URL` with the deployed backend URL plus `/api`.
-3. Build command: `npm run build`
-4. Output directory: `dist`
+* Admin creates project
+* Adds members
+* Assigns tasks
+* Members update task status
 
-Deployment link:
+# 📊 Dashboard
 
-```text
-Add your deployed frontend/backend links here.
-```
+* Aggregates task data
+* Tracks progress
+* Identifies overdue tasks
 
-## Demo Explanation
+--- 
 
-Authentication:
+# 📌 Assignment Context
 
-- A user signs up with name, email, password, and role.
-- The backend hashes the password and stores the user.
-- Login returns a JWT token, which the frontend saves in localStorage.
-- Axios sends the token on protected requests.
+This project was built as part of a pre-placement assignment for Ethara.AI, demonstrating:
 
-Role-based access:
+* Full-stack development
+* REST API design
+* Authentication & authorization
+* Deployment and debugging
 
-- Admin-only routes are protected by JWT verification and role authorization middleware.
-- Admin UI controls appear only for Admin users.
-- Member users see only their assigned projects/tasks and can update task status only.
-
-Task workflow:
-
-- Admin creates projects and adds members.
-- Admin creates tasks inside projects and assigns them to users.
-- Members move assigned tasks through `To Do`, `In Progress`, and `Done`.
-
-Dashboard:
-
-- Shows total tasks.
-- Groups tasks by status.
-- Shows tasks assigned per user.
-- Lists overdue tasks where `dueDate` is before today and status is not `Done`.
+👨‍💻 Author
+Krishnakant Kushwaha
+https://github.com/KRISHNAKANT-KUSHWAHA/
+Krishnakant Kushwaha
+B.Tech CSE | Full-Stack Developer
