@@ -114,15 +114,20 @@ Users:
 ## Deployment
 
 ### Backend on Railway
+1. Go to Render and create a new **Web Service**
+2. Connect your GitHub repository
+3. Set the following configuration:
+   - **Root Directory:** `backend`
+   - **Environment:** Node
+   - **Build Command:** `npm install`
+   - **Start Command:** `node server.js`
 
-1. Create a Railway project.
-2. Connect the repository.
-3. Select the `backend` folder as the service root.
 4. Add environment variables:
    - `MONGO_URI`
    - `JWT_SECRET`
    - `FRONTEND_URL`
-5. Railway will run `npm install` and `npm start`.
+
+5. Click **Create Web Service** and deploy
 
 ### Frontend on Vercel, Netlify, or Railway
 
