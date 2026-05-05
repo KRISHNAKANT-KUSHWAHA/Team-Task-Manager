@@ -1,7 +1,22 @@
-# Team Task Manager
+# 🚀 Team Task Manager (MERN)
 
-A full-stack MERN Team Task Manager with JWT authentication, role-based access control, projects, tasks, and dashboard analytics.
-https://team-task-manager-f4ar.onrender.com/
+A production-ready full-stack **Team Task Management Web Application** built using the MERN stack.  
+This project was developed as part of a **pre-placement assignment for Ethara.AI**.
+
+🔗 **Live Demo:** https://team-task-manager-f4ar.onrender.com/
+
+---
+
+## 📌 Overview
+
+This application allows teams to collaborate efficiently by managing projects and tasks with **role-based access control**.
+
+It is inspired by tools like **Trello** and **Asana**, focusing on real-world workflow and usability.
+
+---
+
+
+
 ## Folder Structure
 
 ```text
