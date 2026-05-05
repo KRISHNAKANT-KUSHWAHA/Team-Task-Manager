@@ -1,7 +1,7 @@
 # 🚀 Team Task Manager (MERN)
 
 A production-ready full-stack **Team Task Management Web Application** built using the MERN stack.  
-This project was developed as part of a **pre-placement assignment for Ethara.AI**.
+This project was developed as part of a **placement drive assessment for Ethara.AI**.
 
 🔗 **Live Demo:** https://team-task-manager-f4ar.onrender.com/
 
