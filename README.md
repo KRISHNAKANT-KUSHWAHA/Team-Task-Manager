@@ -201,6 +201,5 @@ This project was built as part of a pre-placement assignment for Ethara.AI, demo
 
 👨‍💻 Author
 Krishnakant Kushwaha
-https://github.com/KRISHNAKANT-KUSHWAHA/
-Krishnakant Kushwaha
 B.Tech CSE | Full-Stack Developer
+https://github.com/KRISHNAKANT-KUSHWAHA/
